@@ -28,20 +28,22 @@ export default async function (req, res) {
     console.log(rows)
   
 
-    const jogos = rows.map(obj => {
-      const [_nome, _imagem_capa] = obj._rawData; 
+    const productData = rows.map(obj => {
+      const [_nome_produto, _categoria_produto, _preco_produto, _tamanho_produto, _foto1_produto, _foto2_produto ] = obj._rawData; 
       return {
-        nome: _nome,
-        imagem_capa: _imagem_capa
+        nome: _nome_produto,
+        categoriaProduto: _categoria_produto,
+        precoProduto: _preco_produto, 
+        tamanhoProduto: _tamanho_produto,
+        foto1Produto: _foto1_produto,
+        foto2Produto: _foto2_produto
       };
     });
 
   
     res.send({
       title: doc.title,
-      games: jogos,
-  
-      
+      products: productData,
     })
 
   } catch (error) {
